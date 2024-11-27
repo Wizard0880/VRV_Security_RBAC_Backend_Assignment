@@ -1,203 +1,152 @@
-# 🔐 VRV Security RBAC Backend Assignment  
+<!DOCTYPE html>
+<html lang="en">
 
-Welcome to the **VRV Security RBAC Backend Assignment**!  
-This project demonstrates a robust implementation of **Role-Based Access Control (RBAC)** for securing APIs with granular role permissions. 🎯
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VRV Security RBAC Backend Assignment</title>
+</head>
 
----
+<body>
+    <h1>🔐 VRV Security RBAC Backend Assignment</h1>
+    <p>Welcome to the <strong>VRV Security RBAC Backend Assignment</strong>! This project demonstrates a robust implementation of <strong>Role-Based Access Control (RBAC)</strong> for securing APIs with granular role permissions. 🎯</p>
 
-## 🌟 Features  
+    <hr>
 
-✨ **Secure Authentication and Authorization**  
-- Implemented a robust system using:  
-  - **Password Hashing**: Protects user credentials using `bcryptjs`.  
-  - **JWT (JSON Web Tokens)**: For secure and stateless user sessions.  
-  - **Access and Refresh Tokens**: Ensures both security and session longevity.  
-  - **HTTP-Only Cookies**: Adds an additional layer of security against XSS attacks.  
+    <h2>🌟 Features</h2>
+    <ul>
+        <li>✨ <strong>Secure Authentication and Authorization</strong>
+            <ul>
+                <li><strong>Password Hashing</strong>: Protects user credentials using <code>bcryptjs</code>.</li>
+                <li><strong>JWT (JSON Web Tokens)</strong>: For secure and stateless user sessions.</li>
+                <li><strong>Access and Refresh Tokens</strong>: Ensures both security and session longevity.</li>
+                <li><strong>HTTP-Only Cookies</strong>: Adds an additional layer of security against XSS attacks.</li>
+            </ul>
+        </li>
+        <li>👥 <strong>Role-Based Access Control (RBAC)</strong>
+            <ul>
+                <li><strong>User</strong>: Basic access for end-users.</li>
+                <li><strong>Moderator</strong>: Extended privileges to manage content and users.</li>
+                <li><strong>Admin</strong>: Full control over all resources and users.</li>
+            </ul>
+        </li>
+        <li>🔐 <strong>API Security</strong>
+            <ul>
+                <li><strong>Middleware-based Validation</strong>: Ensures APIs are protected with role and permission checks.</li>
+                <li><strong>Error Handling</strong>: Unified and developer-friendly error responses for quick debugging.</li>
+            </ul>
+        </li>
+        <li>⚙️ <strong>Scalable Backend Architecture</strong>
+            <ul>
+                <li>Built using <strong>Node.js</strong> and <strong>Express.js</strong>, designed for high performance and easy integration.</li>
+            </ul>
+        </li>
+        <li>🛠️ <strong>Developer-Friendly Setup</strong>
+            <ul>
+                <li>Simplified installation process.</li>
+                <li>Intuitive and modular route structure for quick navigation and testing.</li>
+            </ul>
+        </li>
+        <li>📊 <strong>Comprehensive Documentation</strong>
+            <ul>
+                <li>Detailed API documentation with ready-to-use JSON payloads for testing in Postman.</li>
+                <li>Well-commented codebase for easy readability and extensibility.</li>
+            </ul>
+        </li>
+    </ul>
 
-👥 **Role-Based Access Control (RBAC)**  
-- Seamlessly manage access for different roles, including:  
-  - **User**: Basic access for end-users.  
-  - **Moderator**: Extended privileges to manage content and users.  
-  - **Admin**: Full control over all resources and users.  
+    <hr>
 
-🔐 **API Security**  
-- **Middleware-based Validation**: Ensures APIs are protected with role and permission checks.  
-- **Error Handling**: Unified and developer-friendly error responses for quick debugging.  
+    <h2>📋 Environment Variables</h2>
+    <p>To run this project, you will need to add the following environment variables to your <code>.env</code> file:</p>
+    <ul>
+        <li><code>PORT</code></li>
+        <li><code>MONGO_URI</code></li>
+        <li><code>JWT_SECRET</code></li>
+        <li><code>JWT_ACCESS_EXPIRY</code></li>
+        <li><code>JWT_REFRESH_EXPIRY</code></li>
+    </ul>
 
-⚙️ **Scalable Backend Architecture**  
-- Built using **Node.js** and **Express.js**, designed for:  
-  - High performance.  
-  - Easy integration with frontend and third-party services.  
+    <hr>
 
-🛠️ **Developer-Friendly Setup**  
-- Simplified installation process.  
-- Intuitive and modular route structure for quick navigation and testing.  
+    <h2>🚀 How to Run</h2>
+    <ol>
+        <li>Clone the repository: <code>git clone https://github.com/Wizard0880/VRV_Security_RBAC_Backend_Assignment.git</code></li>
+        <li>Navigate to the project directory: <code>cd VRV_Security_RBAC_Backend_Assignment</code></li>
+        <li>Install dependencies: <code>npm install</code></li>
+        <li>Create a <code>.env</code> file in the root directory and add the required environment variables listed above.</li>
+        <li>Start the server: <code>npm start</code></li>
+    </ol>
 
-📊 **Comprehensive Documentation**  
-- Detailed API documentation with ready-to-use JSON payloads for testing in Postman.  
-- Well-commented codebase to ensure easy readability and extensibility.  
+    <hr>
 
+    <h2>🛣️ Route Structure</h2>
+    <p>There are three main route files:</p>
+    <ul>
+        <li><strong>Auth Routes</strong> (<code>auth.routes</code>):
+            <ul>
+                <li><code>POST /register</code>: Register a new user.</li>
+                <li><code>POST /login</code>: Login and obtain access/refresh tokens.</li>
+                <li><code>POST /logout</code>: Logout and clear session tokens.</li>
+                <li><code>POST /create-content</code>: Create content (requires authentication).</li>
+            </ul>
+        </li>
+        <li><strong>Admin Routes</strong> (<code>admin.routes</code>):
+            <ul>
+                <li><code>GET /logs</code>: View system logs.</li>
+                <li><code>PUT /update-user-status</code>: Update user status.</li>
+                <li><code>DELETE /delete-user/:userId</code>: Delete a specific user by ID.</li>
+            </ul>
+        </li>
+        <li><strong>Moderator Routes</strong> (<code>moderator.routes</code>):
+            <ul>
+                <li><code>GET /pending-content</code>: View pending content for review.</li>
+                <li><code>POST /feedback</code>: Submit feedback on content.</li>
+            </ul>
+        </li>
+    </ul>
 
----
+    <hr>
 
-### 📁 File Structure  
-
-```plaintext
-.
-├── README.md
-├── package-lock.json
-├── package.json
-├── src/
-│   ├── config/
-│   │   └── database.config.js
-│   ├── controllers/
-│   │   ├── admin.controller.js
-│   │   ├── auth.controller.js
-│   │   ├── content.controller.js
-│   │   └── moderator.controller.js
-│   ├── middleware/
-│   │   ├── auth.middleware.js
-│   │   └── role.middleware.js
-│   ├── models/
-│   │   ├── Log.model.js
-│   │   ├── content.model.js
-│   │   └── user.model.js
-│   ├── routes/
-│   │   ├── admin.routes.js
-│   │   ├── auth.routes.js
-│   │   └── moderator.routes.js
-│   ├── server.js
-│   └── utils/
-│       └── token.utils.js
-
-```
-
-## 🚀 Getting Started  
-
-Follow these steps to run the project locally:  
-
----
-
-### 1️⃣ Prerequisites  
-Make sure you have the following installed on your system:  
-- **Node.js** (v14 or higher)  
-- **MongoDB** (local or cloud instance)  
-
----
-
-### 2️⃣ Installation  
-
-Clone the repository and install the dependencies:  
-
-
-# Clone the repository
-git clone https://github.com/Wizard0880/VRV_Security_RBAC_Backend_Assignment.git
-
-# Navigate into the project directory
-cd VRV_Security_RBAC_Backend_Assignment
-
-# Install the required dependencies
-npm install
-
-### 3️⃣ Environment Variables  
-
-Create a `.env` file in the root directory and define the following variables:  
-
-
-# Server Port
-PORT=8000
-
-# MongoDB Connection String
-MONGO_URI=mongodb://<username>:<password>@cluster_url/db_name
-
-# JWT Secrets and Expiry Times
-JWT_SECRET=your_secret_key
-JWT_ACCESS_EXPIRY=15m      # Access token expiry time
-JWT_REFRESH_EXPIRY=7d      # Refresh token expiry time
-
-### 4️⃣ Run the Server  
-
-Start the development server:  
-npm run dev
-
-### 📚 Dependencies  
-
-Here’s a list of the key dependencies used:  
-
-``plaintext
-* **Express.js**: Web framework
-* **Mongoose**: MongoDB ODM
-* **jsonwebtoken**: For JWT-based authentication
-* **dotenv**: Manage environment variables
-* **bcryptjs**: Password hashing
-
-### 📑 API Routes  
-
-Below is the list of all the routes for this project. Each route is secured with role-based access control (RBAC). Ensure you are using the correct token for testing each route in **Postman**.  
-
----
-
-### 1️⃣ **auth.routes.js**  
-
-| Method | Endpoint             | Description                             | Required Data (JSON)                                 |
-|--------|----------------------|-----------------------------------------|------------------------------------------------------|
-| POST   | `/api/auth/register`  | Register a new user                     | `{ "username": "test", "password": "12345", "role": "user" }` |
-| POST   | `/api/auth/login`     | Log in a user and return a JWT token    | `{ "username": "test", "password": "12345" }`        |
-| POST   | `/api/auth/logout`    | Log out a user and invalidate the token | No data required (JWT token in cookies)              |
-| POST   | `/api/auth/create-content` | Create new content (for authenticated users) | `{ "title": "Content Title", "body": "Content Body" }` |
-
-### Testing Strings for **Postman**  
-- **POST /api/auth/register**  
-  - **Body**:  
-  ``json
-  {
-    "username": "newuser",
-    "password": "password123",
-    "role": "user"
-  }
-
-### POST /api/auth/login  
-
-**Body**:  
-``json
+    <h2>📬 Testing with Postman</h2>
+    <ol>
+        <li>Import the API endpoints into Postman.</li>
+        <li>Use the following sample inputs for testing:</li>
+    </ol>
+    <ul>
+        <li><strong>Register:</strong>
+            <pre>
 {
-  "username": "newuser",
-  "password": "password123"
+    "username": "testuser",
+    "password": "securepassword",
+    "role": "user"
 }
+            </pre>
+        </li>
+        <li><strong>Login:</strong>
+            <pre>
+{
+    "username": "testuser",
+    "password": "securepassword"
+}
+            </pre>
+        </li>
+        <li><strong>Create Content:</strong>
+            <pre>
+{
+    "title": "Sample Content",
+    "description": "This is a sample content."
+}
+            </pre>
+        </li>
+    </ul>
+    <p>Ensure to include the access token in the headers for protected routes.</p>
 
-### 2️⃣ admin.routes.js  
+    <hr>
 
-| Method | Endpoint                        | Description                               | Required Data (JSON)                            |
-|--------|---------------------------------|-------------------------------------------|-------------------------------------------------|
-| GET    | `/api/admin/logs`               | Get logs of system activities             | **Headers**: `Authorization: Bearer <your_jwt_token>` |
-| PUT    | `/api/admin/update-user-status` | Update status of a user (admin only)      | `{ "userId": "12345", "status": "active" }`     |
-| DELETE | `/api/admin/delete-user/:userId`| Delete a user by userId (admin only)      | **Headers**: `Authorization: Bearer <your_jwt_token>` |
+    <h2>📜 License</h2>
+    <p>This project is licensed under the MIT License.</p>
 
----
+</body>
 
-### Testing Strings for Postman  
-
-#### **GET /api/admin/logs**  
-
-**Headers**:  
-``plaintext
-Authorization: Bearer <your_jwt_token>
-
-### 3️⃣ moderator.routes.js  
-
-| Method | Endpoint                         | Description                           | Required Data (JSON)                                    |
-|--------|----------------------------------|---------------------------------------|---------------------------------------------------------|
-| GET    | `/api/moderator/pending-content` | Get all pending content for review    | **Headers**: `Authorization: Bearer <your_jwt_token>`     |
-| POST   | `/api/moderator/feedback`        | Provide feedback on content           | `{ "contentId": "12345", "feedback": "Approved" }`       |
-
----
-
-### Testing Strings for Postman  
-
-#### **GET /api/moderator/pending-content**  
-
-**Headers**:  
-``plaintext
-Authorization: Bearer <your_jwt_token>
-
-
+</html>
