@@ -113,22 +113,46 @@ Use **Postman** or similar API testing tools to test the endpoints.
        "password": "examplePassword",
        "role": "User"
      }
-     ```  
+     ```
    - Log in:  
      Method: `POST`  
      Endpoint: `/login`  
      Body:  
      ```json
      {
-       "fullname": "exampleUser",
+       "email": "example@gmail.com",
        "password": "examplePassword"
      }
-     ```  
+     ```
    - Log out:  
      Method: `POST`  
      Endpoint: `/logout`  
 
-2. **Admin Endpoints**  
+2. **Create Content**  
+   - Create new content:  
+     Method: `POST`  
+     Endpoint: `/create-content`  
+     Headers:  
+     ```
+     Authorization: Bearer <access_token>
+     ```  
+     Body:  
+     ```json
+     {
+       "title": "My New Content",
+       "body": "Detailed description of the content.",
+       "createdBy": "ID of the user creating the content"
+     }
+     ```
+     Expected Response:  
+     ```json
+     {
+       "message": "Content created successfully!",
+       "contentId": "content123"
+     }
+     ```
+
+3. **Admin Endpoints**  
    - View logs:  
      Method: `GET`  
      Endpoint: `/logs`  
@@ -139,14 +163,14 @@ Use **Postman** or similar API testing tools to test the endpoints.
      ```json
      {
        "userId": "user123",
-       "status": "active"
+       "status": "Active"
      }
-     ```  
+     ```
    - Delete a user:  
      Method: `DELETE`  
      Endpoint: `/delete-user/:userId`  
 
-3. **Moderator Endpoints**  
+4. **Moderator Endpoints**  
    - View pending content:  
      Method: `GET`  
      Endpoint: `/pending-content`  
@@ -159,7 +183,7 @@ Use **Postman** or similar API testing tools to test the endpoints.
        "contentId": "content123",
        "feedback": "Looks good!"
      }
-     ```  
+     ```
 
 ---
 
