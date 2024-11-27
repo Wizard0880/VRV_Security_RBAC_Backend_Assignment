@@ -40,34 +40,38 @@ This project demonstrates a robust implementation of **Role-Based Access Control
 
 ---
 
-## 📁 File Structure  
-
-Here’s a neat breakdown of the project’s structure:  
+### 📁 File Structure  
 
 ```plaintext
-📦 VRV_Security_RBAC_Backend_Assignment
-├── 📂 config              # Configuration files (e.g., database, environment variables)
-│   ├── db.js             # MongoDB connection logic
-│   └── dotenv.config.js  # Environment variable configuration
-├── 📂 controllers         # Logic for handling API requests
-│   ├── authController.js # Authentication and role assignment logic
-│   └── userController.js # User management and operations
-├── 📂 middleware          # Custom middleware for request handling
-│   └── authMiddleware.js  # Role-based access control middleware
-├── 📂 models              # Mongoose schemas
-│   ├── User.js            # User model with roles and permissions
-│   └── Role.js            # Role model defining access levels
-├── 📂 routes              # API route definitions
-│   ├── authRoutes.js      # Authentication routes
-│   └── userRoutes.js      # User-related routes
-├── 📂 utils               # Helper functions
-│   └── errorHandler.js    # Error handling utilities
-├── .env                   # Environment variables (e.g., DB connection string, secrets)
-├── .gitignore             # Ignored files/folders
-├── package.json           # Project metadata and dependencies
-└── server.js              # Main entry point for the application
+.
+├── README.md
+├── package-lock.json
+├── package.json
+├── src/
+│   ├── config/
+│   │   └── database.config.js
+│   ├── controllers/
+│   │   ├── admin.controller.js
+│   │   ├── auth.controller.js
+│   │   ├── content.controller.js
+│   │   └── moderator.controller.js
+│   ├── middleware/
+│   │   ├── auth.middleware.js
+│   │   └── role.middleware.js
+│   ├── models/
+│   │   ├── Log.model.js
+│   │   ├── content.model.js
+│   │   └── user.model.js
+│   ├── routes/
+│   │   ├── admin.routes.js
+│   │   ├── auth.routes.js
+│   │   └── moderator.routes.js
+│   ├── server.js
+│   └── utils/
+│       └── token.utils.js
 
 ```
+
 ## 🚀 Getting Started  
 
 Follow these steps to run the project locally:  
@@ -101,7 +105,7 @@ Create a `.env` file in the root directory and define the following variables:
 
 
 # Server Port
-PORT=5000
+PORT=8000
 
 # MongoDB Connection String
 MONGO_URI=mongodb://<username>:<password>@cluster_url/db_name
@@ -115,4 +119,85 @@ JWT_REFRESH_EXPIRY=7d      # Refresh token expiry time
 
 Start the development server:  
 npm run dev
+
+### 📚 Dependencies  
+
+Here’s a list of the key dependencies used:  
+
+``plaintext
+* **Express.js**: Web framework
+* **Mongoose**: MongoDB ODM
+* **jsonwebtoken**: For JWT-based authentication
+* **dotenv**: Manage environment variables
+* **bcryptjs**: Password hashing
+
+### 📑 API Routes  
+
+Below is the list of all the routes for this project. Each route is secured with role-based access control (RBAC). Ensure you are using the correct token for testing each route in **Postman**.  
+
+---
+
+### 1️⃣ **auth.routes.js**  
+
+| Method | Endpoint             | Description                             | Required Data (JSON)                                 |
+|--------|----------------------|-----------------------------------------|------------------------------------------------------|
+| POST   | `/api/auth/register`  | Register a new user                     | `{ "username": "test", "password": "12345", "role": "user" }` |
+| POST   | `/api/auth/login`     | Log in a user and return a JWT token    | `{ "username": "test", "password": "12345" }`        |
+| POST   | `/api/auth/logout`    | Log out a user and invalidate the token | No data required (JWT token in cookies)              |
+| POST   | `/api/auth/create-content` | Create new content (for authenticated users) | `{ "title": "Content Title", "body": "Content Body" }` |
+
+### Testing Strings for **Postman**  
+- **POST /api/auth/register**  
+  - **Body**:  
+  ``json
+  {
+    "username": "newuser",
+    "password": "password123",
+    "role": "user"
+  }
+
+### POST /api/auth/login  
+
+**Body**:  
+``json
+{
+  "username": "newuser",
+  "password": "password123"
+}
+
+### 2️⃣ admin.routes.js  
+
+| Method | Endpoint                        | Description                               | Required Data (JSON)                            |
+|--------|---------------------------------|-------------------------------------------|-------------------------------------------------|
+| GET    | `/api/admin/logs`               | Get logs of system activities             | **Headers**: `Authorization: Bearer <your_jwt_token>` |
+| PUT    | `/api/admin/update-user-status` | Update status of a user (admin only)      | `{ "userId": "12345", "status": "active" }`     |
+| DELETE | `/api/admin/delete-user/:userId`| Delete a user by userId (admin only)      | **Headers**: `Authorization: Bearer <your_jwt_token>` |
+
+---
+
+### Testing Strings for Postman  
+
+#### **GET /api/admin/logs**  
+
+**Headers**:  
+``plaintext
+Authorization: Bearer <your_jwt_token>
+
+### 3️⃣ moderator.routes.js  
+
+| Method | Endpoint                         | Description                           | Required Data (JSON)                                    |
+|--------|----------------------------------|---------------------------------------|---------------------------------------------------------|
+| GET    | `/api/moderator/pending-content` | Get all pending content for review    | **Headers**: `Authorization: Bearer <your_jwt_token>`     |
+| POST   | `/api/moderator/feedback`        | Provide feedback on content           | `{ "contentId": "12345", "feedback": "Approved" }`       |
+
+---
+
+### Testing Strings for Postman  
+
+#### **GET /api/moderator/pending-content**  
+
+**Headers**:  
+``plaintext
+Authorization: Bearer <your_jwt_token>
+
 
