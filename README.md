@@ -33,9 +33,9 @@ This project demonstrates a robust implementation of **Role-Based Access Control
   - Detailed API documentation with ready-to-use JSON payloads for testing in Postman.  
   - Well-commented codebase for easy readability and extensibility.  
 
-- 📈 **Scalable Database Integration**: Efficient data storage and retrieval using MongoDB with Mongoose ODM.  
-- 🌍 **Cross-Origin Resource Sharing (CORS)**: Properly configured for secure frontend-backend communication.  
-
+- 📈 **Scalable Database Integration**
+  -  Efficient data storage and retrieval using MongoDB with Mongoose ODM.
+  
 ---
 
 ## 🛠 Prerequisites  
@@ -44,6 +44,13 @@ This project demonstrates a robust implementation of **Role-Based Access Control
 - **npm**: v6.x or higher  
 - **MongoDB**: A running instance of MongoDB (local or cloud-based like Atlas)  
 - **Postman**: For API testing  
+- **Dependencies**: Ensure the following packages are installed:  
+  - `bcrypt` (v5.1.1)  
+  - `cookie-parser` (v1.4.7)  
+  - `dotenv` (v16.4.5)  
+  - `express` (v4.21.1)  
+  - `jsonwebtoken` (v9.0.2)  
+  - `mongoose` (v8.8.3)   
 
 ---
 
@@ -156,18 +163,16 @@ Use **Postman** or similar API testing tools to test the endpoints.
 
 ---
 
+## **API Flow**
+![API-Flow](https://github.com/user-attachments/assets/ad38bcf9-85eb-401a-8a5c-ac527b315af6)
+
+---
 ## 🛡 Security Features  
 
 - Passwords are securely hashed using `bcryptjs`.  
 - JWT-based authentication with access and refresh tokens ensures session security.  
 - HTTP-only cookies protect against XSS attacks.  
 - Role-based access control restricts users to authorized actions only.  
-
----
-
-## 🤝 Contributing  
-
-Contributions are welcome! Feel free to fork the repository and submit a pull request.  
 
 ---
 
