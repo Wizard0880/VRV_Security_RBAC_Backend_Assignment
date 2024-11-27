@@ -1,152 +1,175 @@
-<!DOCTYPE html>
-<html lang="en">
+# 🔐 VRV Security RBAC Backend Assignment  
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VRV Security RBAC Backend Assignment</title>
-</head>
+Welcome to the **VRV Security RBAC Backend Assignment**!  
+This project demonstrates a robust implementation of **Role-Based Access Control (RBAC)** for securing APIs with granular role permissions. 🎯  
 
-<body>
-    <h1>🔐 VRV Security RBAC Backend Assignment</h1>
-    <p>Welcome to the <strong>VRV Security RBAC Backend Assignment</strong>! This project demonstrates a robust implementation of <strong>Role-Based Access Control (RBAC)</strong> for securing APIs with granular role permissions. 🎯</p>
+---
 
-    <hr>
+## 🌟 Features  
 
-    <h2>🌟 Features</h2>
-    <ul>
-        <li>✨ <strong>Secure Authentication and Authorization</strong>
-            <ul>
-                <li><strong>Password Hashing</strong>: Protects user credentials using <code>bcryptjs</code>.</li>
-                <li><strong>JWT (JSON Web Tokens)</strong>: For secure and stateless user sessions.</li>
-                <li><strong>Access and Refresh Tokens</strong>: Ensures both security and session longevity.</li>
-                <li><strong>HTTP-Only Cookies</strong>: Adds an additional layer of security against XSS attacks.</li>
-            </ul>
-        </li>
-        <li>👥 <strong>Role-Based Access Control (RBAC)</strong>
-            <ul>
-                <li><strong>User</strong>: Basic access for end-users.</li>
-                <li><strong>Moderator</strong>: Extended privileges to manage content and users.</li>
-                <li><strong>Admin</strong>: Full control over all resources and users.</li>
-            </ul>
-        </li>
-        <li>🔐 <strong>API Security</strong>
-            <ul>
-                <li><strong>Middleware-based Validation</strong>: Ensures APIs are protected with role and permission checks.</li>
-                <li><strong>Error Handling</strong>: Unified and developer-friendly error responses for quick debugging.</li>
-            </ul>
-        </li>
-        <li>⚙️ <strong>Scalable Backend Architecture</strong>
-            <ul>
-                <li>Built using <strong>Node.js</strong> and <strong>Express.js</strong>, designed for high performance and easy integration.</li>
-            </ul>
-        </li>
-        <li>🛠️ <strong>Developer-Friendly Setup</strong>
-            <ul>
-                <li>Simplified installation process.</li>
-                <li>Intuitive and modular route structure for quick navigation and testing.</li>
-            </ul>
-        </li>
-        <li>📊 <strong>Comprehensive Documentation</strong>
-            <ul>
-                <li>Detailed API documentation with ready-to-use JSON payloads for testing in Postman.</li>
-                <li>Well-commented codebase for easy readability and extensibility.</li>
-            </ul>
-        </li>
-    </ul>
+- ✨ **Secure Authentication and Authorization**  
+  - **Password Hashing**: Protects user credentials using `bcryptjs`.  
+  - **JWT (JSON Web Tokens)**: For secure and stateless user sessions.  
+  - **Access and Refresh Tokens**: Ensures both security and session longevity.  
+  - **HTTP-Only Cookies**: Adds an additional layer of security against XSS attacks.  
 
-    <hr>
+- 👥 **Role-Based Access Control (RBAC)**  
+  - **User**: Basic access for end-users.  
+  - **Moderator**: Extended privileges to manage content and users.  
+  - **Admin**: Full control over all resources and users.  
 
-    <h2>📋 Environment Variables</h2>
-    <p>To run this project, you will need to add the following environment variables to your <code>.env</code> file:</p>
-    <ul>
-        <li><code>PORT</code></li>
-        <li><code>MONGO_URI</code></li>
-        <li><code>JWT_SECRET</code></li>
-        <li><code>JWT_ACCESS_EXPIRY</code></li>
-        <li><code>JWT_REFRESH_EXPIRY</code></li>
-    </ul>
+- 🔐 **API Security**  
+  - **Middleware-based Validation**: Ensures APIs are protected with role and permission checks.  
+  - **Error Handling**: Unified and developer-friendly error responses for quick debugging.  
 
-    <hr>
+- ⚙️ **Scalable Backend Architecture**  
+  - Built using **Node.js** and **Express.js**, designed for high performance and easy integration.  
 
-    <h2>🚀 How to Run</h2>
-    <ol>
-        <li>Clone the repository: <code>git clone https://github.com/Wizard0880/VRV_Security_RBAC_Backend_Assignment.git</code></li>
-        <li>Navigate to the project directory: <code>cd VRV_Security_RBAC_Backend_Assignment</code></li>
-        <li>Install dependencies: <code>npm install</code></li>
-        <li>Create a <code>.env</code> file in the root directory and add the required environment variables listed above.</li>
-        <li>Start the server: <code>npm start</code></li>
-    </ol>
+- 🛠️ **Developer-Friendly Setup**  
+  - Simplified installation process.  
+  - Intuitive and modular route structure for quick navigation and testing.  
 
-    <hr>
+- 📊 **Comprehensive Documentation**  
+  - Detailed API documentation with ready-to-use JSON payloads for testing in Postman.  
+  - Well-commented codebase for easy readability and extensibility.  
 
-    <h2>🛣️ Route Structure</h2>
-    <p>There are three main route files:</p>
-    <ul>
-        <li><strong>Auth Routes</strong> (<code>auth.routes</code>):
-            <ul>
-                <li><code>POST /register</code>: Register a new user.</li>
-                <li><code>POST /login</code>: Login and obtain access/refresh tokens.</li>
-                <li><code>POST /logout</code>: Logout and clear session tokens.</li>
-                <li><code>POST /create-content</code>: Create content (requires authentication).</li>
-            </ul>
-        </li>
-        <li><strong>Admin Routes</strong> (<code>admin.routes</code>):
-            <ul>
-                <li><code>GET /logs</code>: View system logs.</li>
-                <li><code>PUT /update-user-status</code>: Update user status.</li>
-                <li><code>DELETE /delete-user/:userId</code>: Delete a specific user by ID.</li>
-            </ul>
-        </li>
-        <li><strong>Moderator Routes</strong> (<code>moderator.routes</code>):
-            <ul>
-                <li><code>GET /pending-content</code>: View pending content for review.</li>
-                <li><code>POST /feedback</code>: Submit feedback on content.</li>
-            </ul>
-        </li>
-    </ul>
+- 📈 **Scalable Database Integration**: Efficient data storage and retrieval using MongoDB with Mongoose ODM.  
+- 🌍 **Cross-Origin Resource Sharing (CORS)**: Properly configured for secure frontend-backend communication.  
 
-    <hr>
+---
 
-    <h2>📬 Testing with Postman</h2>
-    <ol>
-        <li>Import the API endpoints into Postman.</li>
-        <li>Use the following sample inputs for testing:</li>
-    </ol>
-    <ul>
-        <li><strong>Register:</strong>
-            <pre>
-{
-    "username": "testuser",
-    "password": "securepassword",
-    "role": "user"
-}
-            </pre>
-        </li>
-        <li><strong>Login:</strong>
-            <pre>
-{
-    "username": "testuser",
-    "password": "securepassword"
-}
-            </pre>
-        </li>
-        <li><strong>Create Content:</strong>
-            <pre>
-{
-    "title": "Sample Content",
-    "description": "This is a sample content."
-}
-            </pre>
-        </li>
-    </ul>
-    <p>Ensure to include the access token in the headers for protected routes.</p>
+## 🛠 Prerequisites  
 
-    <hr>
+- **Node.js**: v14.x or higher  
+- **npm**: v6.x or higher  
+- **MongoDB**: A running instance of MongoDB (local or cloud-based like Atlas)  
+- **Postman**: For API testing  
 
-    <h2>📜 License</h2>
-    <p>This project is licensed under the MIT License.</p>
+---
 
-</body>
+## 📋 Environment Variables  
 
-</html>
+To run this project, you will need to add the following environment variables to your `.env` file:  
+PORT=your_server_port  
+MONGO_URI=your_mongodb_connection_string  
+JWT_SECRET=your_jwt_secret  
+JWT_ACCESS_EXPIRY=15m  
+JWT_REFRESH_EXPIRY=7d  
+
+---
+
+## 🚀 How to Run  
+
+1. Clone the repository: `git clone https://github.com/Wizard0880/VRV_Security_RBAC_Backend_Assignment.git`  
+2. Navigate to the project directory: `cd VRV_Security_RBAC_Backend_Assignment`  
+3. Install dependencies: `npm install`  
+4. Create a `.env` file in the root directory and add the required environment variables as mentioned above.  
+5. Start the server: `npm start`  
+
+---
+
+## 📂 Project Structure  
+
+- **routes/auth.routes.js**  
+  Contains the following endpoints:  
+  - `POST /register` - For user registration.  
+  - `POST /login` - For user login.  
+  - `POST /logout` - For logging out users.  
+  - `POST /create-content` - For users to create new content.  
+
+- **routes/admin.routes.js**  
+  Contains the following endpoints:  
+  - `GET /logs` - For admins to view application logs.  
+  - `PUT /update-user-status` - For admins to update the status of users.  
+  - `DELETE /delete-user/:userId` - For admins to delete specific users by ID.  
+
+- **routes/moderator.routes.js**  
+  Contains the following endpoints:  
+  - `GET /pending-content` - For moderators to review pending content.  
+  - `POST /feedback` - For moderators to provide feedback.  
+
+---
+
+## 🔎 Testing the API  
+
+Use **Postman** or similar API testing tools to test the endpoints.  
+
+1. **User Registration and Authentication**  
+   - Register a new user:  
+     Method: `POST`  
+     Endpoint: `/register`  
+     Body:  
+     ```json
+     {
+       "username": "exampleUser",
+       "password": "examplePassword",
+       "role": "user"
+     }
+     ```  
+   - Log in:  
+     Method: `POST`  
+     Endpoint: `/login`  
+     Body:  
+     ```json
+     {
+       "username": "exampleUser",
+       "password": "examplePassword"
+     }
+     ```  
+   - Log out:  
+     Method: `POST`  
+     Endpoint: `/logout`  
+
+2. **Admin Endpoints**  
+   - View logs:  
+     Method: `GET`  
+     Endpoint: `/logs`  
+   - Update user status:  
+     Method: `PUT`  
+     Endpoint: `/update-user-status`  
+     Body:  
+     ```json
+     {
+       "userId": "user123",
+       "status": "active"
+     }
+     ```  
+   - Delete a user:  
+     Method: `DELETE`  
+     Endpoint: `/delete-user/:userId`  
+
+3. **Moderator Endpoints**  
+   - View pending content:  
+     Method: `GET`  
+     Endpoint: `/pending-content`  
+   - Provide feedback:  
+     Method: `POST`  
+     Endpoint: `/feedback`  
+     Body:  
+     ```json
+     {
+       "contentId": "content123",
+       "feedback": "Looks good!"
+     }
+     ```  
+
+---
+
+## 🛡 Security Features  
+
+- Passwords are securely hashed using `bcryptjs`.  
+- JWT-based authentication with access and refresh tokens ensures session security.  
+- HTTP-only cookies protect against XSS attacks.  
+- Role-based access control restricts users to authorized actions only.  
+
+---
+
+## 🤝 Contributing  
+
+Contributions are welcome! Feel free to fork the repository and submit a pull request.  
+
+---
+
+## 📜 License  
+
+This project is licensed under the MIT License.  
