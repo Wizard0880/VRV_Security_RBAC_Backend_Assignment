@@ -67,6 +67,7 @@ Here’s a neat breakdown of the project’s structure:
 ├── package.json           # Project metadata and dependencies
 └── server.js              # Main entry point for the application
 
+```
 ## 🚀 Getting Started  
 
 Follow these steps to run the project locally:  
@@ -84,7 +85,7 @@ Make sure you have the following installed on your system:
 
 Clone the repository and install the dependencies:  
 
-```bash
+
 # Clone the repository
 git clone https://github.com/Wizard0880/VRV_Security_RBAC_Backend_Assignment.git
 
@@ -98,7 +99,7 @@ npm install
 
 Create a `.env` file in the root directory and define the following variables:  
 
-```plaintext
+
 # Server Port
 PORT=5000
 
@@ -113,7 +114,5 @@ JWT_REFRESH_EXPIRY=7d      # Refresh token expiry time
 ### 4️⃣ Run the Server  
 
 Start the development server:  
-
-```bash
 npm run dev
 
