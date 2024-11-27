@@ -101,9 +101,10 @@ Use **Postman** or similar API testing tools to test the endpoints.
      Body:  
      ```json
      {
-       "username": "exampleUser",
+       "fullname": "exampleUser",
+       "email":"example@gmail.com",
        "password": "examplePassword",
-       "role": "user"
+       "role": "User"
      }
      ```  
    - Log in:  
@@ -112,7 +113,7 @@ Use **Postman** or similar API testing tools to test the endpoints.
      Body:  
      ```json
      {
-       "username": "exampleUser",
+       "fullname": "exampleUser",
        "password": "examplePassword"
      }
      ```  
