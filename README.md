@@ -37,7 +37,48 @@ This project demonstrates a robust implementation of **Role-Based Access Control
   -  Efficient data storage and retrieval using MongoDB with Mongoose ODM.
   
 ---
+## 🛠 Working  
 
+This project demonstrates a secure, professional, and scalable approach to managing user authentication and role-based access control. Below is the detailed working process:  
+
+1. **User Registration**  
+   - A new user registers by providing `fullname`, `email`, `password`, and `role` (e.g., `user`, `moderator`, or `admin`).  
+   - The `password` is securely hashed using `bcryptjs` before saving to the database.  
+   - The user details (`fullname`, `email`, hashed password, and role) are stored in the MongoDB database for future reference.  
+
+2. **Login Process**  
+   - A user logs in by providing their `email` and `password`.  
+   - The system verifies the credentials by comparing the hashed password with the stored hash.  
+   - Upon successful verification, two tokens are generated:  
+     - **Access Token**: Short-lived token containing the `role` as part of the payload.  
+     - **Refresh Token**: Long-lived token for refreshing access tokens.  
+   - The **Access Token** is sent to the user's browser via an HTTP response header, while the **Refresh Token** is saved in the database to ensure database-level authenticity.  
+   - An **HTTP-only cookie** is also set for secure session management, adding protection against XSS attacks.  
+
+3. **Access Control**  
+   - The **Access Token** is used to authorize API requests.  
+   - The token's payload includes the `role`, which is checked by middleware to determine the permissions for a specific route.  
+   - Based on the user's role (`user`, `moderator`, `admin`), appropriate access is granted:  
+     - **User**: Can create content and perform basic tasks.  
+     - **Moderator**: Can review pending content and provide feedback.  
+     - **Admin**: Can view logs, update user statuses, and delete users.  
+
+4. **Token Refresh**  
+   - When the **Access Token** expires, the **Refresh Token** is used to generate a new Access Token without requiring the user to log in again.  
+   - The **Refresh Token** is verified for authenticity against the database before issuing a new Access Token.  
+
+5. **Logout**  
+   - The user logs out, clearing the HTTP-only cookies and removing the Refresh Token from the database.  
+   - This ensures all tokens are invalidated, preventing unauthorized reuse.  
+
+6. **Role-Based Permissions**  
+   - Each API route is protected by middleware that validates the **Access Token** and extracts the user's role from the payload.  
+   - Permissions for accessing, creating, updating, or deleting resources are granted strictly based on the role.  
+
+**Scalability:**  
+- The system architecture is designed to handle large user bases efficiently with separate handling of access and refresh tokens.  
+- Proper use of JWT ensures lightweight, stateless authentication for most requests while retaining database checks for critical operations.  
+---
 ## 🛠 Prerequisites  
 
 - **Node.js**: v14.x or higher  
