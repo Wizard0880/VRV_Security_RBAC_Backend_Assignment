@@ -98,11 +98,11 @@ This project demonstrates a secure, professional, and scalable approach to manag
 ## 📋 Environment Variables  
 
 To run this project, you will need to add the following environment variables to your `.env` file:  
-PORT=your_server_port  
-MONGO_URI=your_mongodb_connection_string  
-JWT_SECRET=your_jwt_secret  
-JWT_ACCESS_EXPIRY=15m  
-JWT_REFRESH_EXPIRY=7d  
+`PORT`=your_server_port  
+`MONGO_URI`=your_mongodb_connection_string  
+`JWT_SECRET`=your_jwt_secret  
+`JWT_ACCESS_EXPIRY`=15m  
+`JWT_REFRESH_EXPIRY`=7d  
 
 ---
 
